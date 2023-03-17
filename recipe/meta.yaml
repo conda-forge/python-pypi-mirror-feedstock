@@ -14,7 +14,7 @@ build:
     - pypi-mirror=pypi_mirror:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
