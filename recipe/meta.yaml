@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/python-pypi-mirror-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/python-pypi-mirror-{{ version }}.tar.gz
   sha256: b47d11f17d7dfeb360cb8c161f5720cf6e7a8dea4fa55c3a2e8fbd6d8ba79f18
 
 build:
@@ -14,14 +14,14 @@ build:
     - pypi-mirror=pypi_mirror:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -31,6 +31,7 @@ test:
     - pypi-mirror --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/montag451/pypi-mirror
